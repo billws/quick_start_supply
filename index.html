@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Demo</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/timepicker@1.14.1/jquery.timepicker.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        background-color: darkslategray;
+        color: white;
+      }
+      .temp-col {
+        border: 1px solid gray;
+      }
+    </style>
+  </head>
+
+  <body style="background-color: darkslategray">
+    <div class="container-sm" id="result"></div>
+    <div class="container-sm">
+      <div class="container">
+        <button
+          type="button"
+          class="btn btn-secondary btn-lg"
+          style="width: 100%"
+          onclick="addGroup()"
+        >
+          Add group
+        </button>
+      </div>
+    </div>
+
+    <div class="container-sm" style="padding-top: 20px">
+      <div class="container text-left">
+        <div class="row">
+          <div class="col temp-col">OrderNumber</div>
+          <div class="col temp-col">Capacity</div>
+          <div class="col temp-col">Time</div>
+          <div class="col temp-col">Name</div>
+          <div class="col temp-col">Address</div>
+          <div class="col temp-col">group</div>
+        </div>
+        <div class="row">
+          <div class="col temp-col">1</div>
+          <div class="col temp-col">
+            <input
+              id="number_1"
+              type="number"
+              value="0"
+              style="width: 100px"
+              onchange="calculate()"
+            />
+          </div>
+          <div class="col temp-col">
+            <input
+              id="time_1"
+              type="text"
+              value="00:00:00"
+              data-time-format="H:i:s"
+              style="width: 100px"
+            />
+          </div>
+          <div class="col temp-col">Test1</div>
+          <div class="col temp-col">Address1</div>
+          <div class="col temp-col">
+            <div name="radio_1"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col temp-col">2</div>
+          <div class="col temp-col">
+            <input
+              id="number_2"
+              type="number"
+              value="0"
+              style="width: 100px"
+              onchange="calculate()"
+            />
+          </div>
+          <div class="col temp-col">
+            <input
+              id="time_2"
+              type="text"
+              value="00:00:00"
+              data-time-format="H:i:s"
+              style="width: 100px"
+            />
+          </div>
+          <div class="col temp-col">Test2</div>
+          <div class="col temp-col">Address2</div>
+          <div class="col temp-col">
+            <div name="radio_2"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col temp-col">3</div>
+          <div class="col temp-col">
+            <input
+              id="number_3"
+              type="number"
+              value="0"
+              style="width: 100px"
+              onchange="calculate()"
+            />
+          </div>
+          <div class="col temp-col">
+            <input
+              id="time_3"
+              type="text"
+              value="00:00:00"
+              data-time-format="H:i:s"
+              style="width: 100px"
+            />
+          </div>
+          <div class="col temp-col">Test3</div>
+          <div class="col temp-col">Address3</div>
+          <div class="col temp-col">
+            <div name="radio_3"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col temp-col">4</div>
+          <div class="col temp-col">
+            <input
+              id="number_4"
+              type="number"
+              value="0"
+              style="width: 100px"
+              onchange="calculate()"
+            />
+          </div>
+          <div class="col temp-col">
+            <input
+              id="time_4"
+              type="text"
+              value="00:00:00"
+              data-time-format="H:i:s"
+              style="width: 100px"
+            />
+          </div>
+          <div class="col temp-col">Test4</div>
+          <div class="col temp-col">Address4</div>
+          <div class="col temp-col">
+            <div name="radio_4"></div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col temp-col">5</div>
+          <div class="col temp-col">
+            <input
+              id="number_5"
+              type="number"
+              value="0"
+              style="width: 100px"
+              onchange="calculate()"
+            />
+          </div>
+          <div class="col temp-col">
+            <input
+              id="time_5"
+              type="text"
+              value="00:00:00"
+              data-time-format="H:i:s"
+              style="width: 100px"
+            />
+          </div>
+          <div class="col temp-col">Test5</div>
+          <div class="col temp-col">Address5</div>
+          <div class="col temp-col">
+            <div name="radio_5"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src=" https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js "></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/timepicker@1.14.1/jquery.timepicker.min.js"></script>
+    <script>
+      let totalGroup = 1;
+      let allSupplies = [];
+      let totalRow = 1;
+
+      function init() {
+        initSupply();
+        generateGroup();
+        generateRadio();
+        initTimePicker();
+      }
+      function initTimePicker() {
+        $("#time_1").timepicker({ timeFormat: "H:i:s" });
+        $("#time_2").timepicker({ timeFormat: "H:i:s" });
+        $("#time_3").timepicker({ timeFormat: "H:i:s" });
+        $("#time_4").timepicker({ timeFormat: "H:i:s" });
+        $("#time_5").timepicker({ timeFormat: "H:i:s" });
+        $("#time_1").on("change", () => calculate());
+        $("#time_2").on("change", () => calculate());
+        $("#time_3").on("change", () => calculate());
+        $("#time_4").on("change", () => calculate());
+        $("#time_5").on("change", () => calculate());
+      }
+      function initSupply() {
+        for (let i = 0; i < totalGroup; i++) {
+          allSupplies[i] = 0;
+        }
+      }
+
+      function addGroup() {
+        totalGroup += 1;
+        initSupply();
+        generateGroup();
+        generateRadio();
+        calculate();
+      }
+      function calculate() {
+        initSupply();
+        $('div[name^="radio_"]').each((index, element) => {
+          let targetRadio =
+            'input[name="select_group_' + (index + 1) + '"]:checked';
+          let selectedGroup = $(targetRadio).val();
+          allSupplies[selectedGroup - 1] += parseInt(
+            $("#number_" + (index + 1)).val(),
+            10
+          );
+        });
+        showResult();
+      }
+      function showResult() {
+        for (let i = 0; i < totalGroup; i++) {
+          let supplyName = "group" + (i + 1) + "_supply";
+          $("#" + supplyName).text(allSupplies[i]);
+        }
+      }
+      function generateGroup() {
+        $("#result").empty();
+        for (let i = 0; i < totalGroup; i++) {
+          let newDiv = document.createElement("div");
+          newDiv.innerHTML = "group " + (i + 1) + ":";
+          let newUl = document.createElement("ul");
+          let newSupply = document.createElement("li");
+          newSupply.innerHTML =
+            "Total Supply Capacity: <label id=group" +
+            (i + 1) +
+            "_supply>0</label>";
+          let newDemand = document.createElement("li");
+          newDemand.innerHTML =
+            "Total Demand Capacity:  <label id=group" +
+            (i + 1) +
+            "_demand>0</label>";
+          newUl.appendChild(newSupply);
+          newUl.appendChild(newDemand);
+          newDiv.appendChild(newUl);
+          $("#result").append(newDiv);
+        }
+      }
+      function generateRadio() {
+        $('div[name^="radio_"]').each((index, element) => {
+          $(element).empty();
+
+          for (let j = 0; j < totalGroup; j++) {
+            let newDiv = document.createElement("div");
+            let groupName = "" + (index + 1);
+            let radioName = "" + (j + 1);
+            let radioButton = document.createElement("input");
+            radioButton.type = "radio";
+            radioButton.value = radioName;
+            radioButton.id = "group_" + groupName + "_" + radioName;
+            radioButton.name = "select_group_" + (index + 1);
+            radioButton.onclick = calculate;
+            if (j === 0) {
+              radioButton.checked = true;
+            }
+            let newLable = document.createElement("label");
+            newLable.htmlFor = "group_" + groupName + "_" + radioName;
+            newLable.innerHTML = "group " + radioName;
+            newDiv.appendChild(radioButton);
+            newDiv.appendChild(newLable);
+            element.appendChild(newDiv);
+          }
+        });
+      }
+      init();
+    </script>
+  </body>
+</html>
